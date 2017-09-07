@@ -8,14 +8,15 @@ import pandas as pd
 import numpy as np
 import re
 
+# Loading data ad data frame
 final = pd.read_excel(open('output1_10000.xlsx','rb'), sheetname='Sheet1')
-
+# Filtering rows wtrh NA values
 qf = final.dropna()
 
 uniq_val = list(set(qf['Attributes']))
-
+# Renaming the Attribute name of CDS text
 qf['Attributes'] = qf.Attributes.replace('Description', 'CDS Text')
-
+# Filtering rows to get data frame with CDS text
 qf = qf[qf.Attributes == 'CDS Text']
 
 qf = qf[['ID', 'CIK', 'Company_Name', 'Date', 'Filename', 'Form_Type', 'URL', 'Values']]
@@ -24,6 +25,7 @@ qf = qf.rename(columns = {'Values':'CDS_Text'})
 
 cds = list(qf['CDS_Text'])
 
+# Regeex to capture the company or firm names
 z = re.compile(r"default(.+)? of ([A-Z][A-Za-z]+,? of ([A-Z][A-Za-z]+.?,? ?)+|[A-Z][A-Za-z]+,? ([A-Z][A-Za-z]+.?,? ?)+)")
 count = re.compile(r"([A-Z][A-Za-z]+,? of ([A-Z][A-Za-z]+.?,? ?)+|[A-Z][A-Za-z]+,? ([A-Z][A-Za-z]+.?,? ?)+)")
 
