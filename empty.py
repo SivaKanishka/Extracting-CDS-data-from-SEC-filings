@@ -2,7 +2,7 @@
 """
 Created on Mon Sep 04 15:28:23 2017
 
-@author: Chebolu
+@author: Siva Kanihska
 """
 import sqlite3
 import pandas as pd
@@ -32,10 +32,7 @@ dummy = pd.DataFrame(columns = ['ID', 'CIK', 'Company_Name', 'Date', 'Filename',
 good_indices = []
 url_table_index = []
 
-import time
-
-
-for u in range(10000, 20000):
+for u in range(0, 10000):
     ID = input['ID'][u]
     cik = input['CIK'][u]
     comp_name = input['Company_Name'][u]
